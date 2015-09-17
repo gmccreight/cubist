@@ -22,16 +22,16 @@ describe Cubist::SourceFilesFinder do
   describe "perspective files" do
 
     it "should find them" do
-      make_perspective_file("availability/.cubist_perspective")
+      make_perspective_file_at("availability")
       file_and_link("app/models/item.rb", "availability/app/models/item.rb")
 
-      make_perspective_file("items/.cubist_perspective")
+      make_perspective_file_at("items")
       file_and_link("app/models/item.rb", "items/app/models/item.rb")
 
-      make_perspective_file("features/cops_interface/.cubist_perspective")
+      make_perspective_file_at("features/cops_interface")
       file_and_link("app/models/item.rb", "features/cops_interface/app/models/item.rb")
 
-      make_perspective_file("features/messaging/.cubist_perspective")
+      make_perspective_file_at("features/messaging")
       file_and_link("app/models/item.rb", "features/messaging/app/models/item.rb")
 
       expect(@finder.get_perspectives.size).to eq(4)
