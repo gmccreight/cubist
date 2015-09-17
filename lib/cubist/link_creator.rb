@@ -18,7 +18,11 @@ module Cubist
     end
 
     def suggested_link_path_for(path)
-      path
+      # Should handle multiple types of projects.  Starting with Rails.
+      rails = LinkSuggester::Rails.new
+      if rails.is_type?
+        return rails.suggestion_for(path)
+      end
     end
 
   end
