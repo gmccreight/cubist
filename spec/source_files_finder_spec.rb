@@ -19,4 +19,24 @@ describe Cubist::SourceFilesFinder do
     expect(File.readlink(@finder.run.last)).to eq(project_dir + "/app/models/item.rb")
   end
 
+  describe "perspective files" do
+
+    it "should find them" do
+      make_perspective_file("availability/.cubist_perspective")
+      file_and_link("app/models/item.rb", "availability/app/models/item.rb")
+
+      make_perspective_file("items/.cubist_perspective")
+      file_and_link("app/models/item.rb", "items/app/models/item.rb")
+
+      make_perspective_file("features/cops_interface/.cubist_perspective")
+      file_and_link("app/models/item.rb", "features/cops_interface/app/models/item.rb")
+
+      make_perspective_file("features/messaging/.cubist_perspective")
+      file_and_link("app/models/item.rb", "features/messaging/app/models/item.rb")
+
+      expect(@finder.get_perspectives.size).to eq(4)
+    end
+
+  end
+
 end

@@ -13,6 +13,10 @@ module Cubist
       get_files
     end
 
+    def get_perspectives
+      get_files.select{|x| x =~ /\.cubist_perspective$/}
+    end
+
     private def get_files
       dir = @conf.cubist_folder_full_path
       results = []

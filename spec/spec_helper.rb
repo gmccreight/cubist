@@ -13,12 +13,15 @@ def project_dir
   conf.root
 end
 
-def cubist_dir
-  conf.root + "/" + conf.folder
-end
-
 def make_project_file(full_path, content: "")
   file_full_path = project_dir + "/" + full_path
+  FileUtils.mkdir_p(Pathname.new(file_full_path).dirname.to_s)
+  FileUtils.touch(file_full_path)
+  file_full_path
+end
+
+def make_perspective_file(relative_path)
+  file_full_path = conf.cubist_folder_full_path + "/" + relative_path
   FileUtils.mkdir_p(Pathname.new(file_full_path).dirname.to_s)
   FileUtils.touch(file_full_path)
   file_full_path
