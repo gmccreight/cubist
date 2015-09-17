@@ -1,6 +1,6 @@
 module Cubist
 
-  class Conf < Struct.new(:root, :folder)
+  class Conf < Struct.new(:root, :folder, :perspective)
   end
 
 end
