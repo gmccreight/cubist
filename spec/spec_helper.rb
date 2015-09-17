@@ -1,15 +1,18 @@
 require "cubist"
 
+def conf
+  return @conf if @conf
+  root = Dir.mktmpdir
+  Dir.mkdir(root + "/_cubist")
+  @conf = Cubist::Conf.new(root, "_cubist")
+end
+
 def project_dir
-  return @project_dir if @project_dir
-  @project_dir = Dir.mktmpdir
+  conf.root
 end
 
 def cubist_dir
-  return @cubist_dir if @cubist_dir
-  @cubist_dir = project_dir + "/_cubist"
-  Dir.mkdir(@cubist_dir)
-  @cubist_dir
+  conf.root + "/" + conf.folder
 end
 
 def make_project_file(full_path, content: "")
@@ -20,7 +23,7 @@ def make_project_file(full_path, content: "")
 end
 
 def make_cubist_link(project_file_full_path, cubist_link_path)
-  Cubist::LinkCreator.new(root: project_dir).create_link(project_file_full_path, cubist_link_path)
+  Cubist::LinkCreator.new(conf: conf).create_link(project_file_full_path, cubist_link_path)
 end
 
 def file_and_link(project_file_path, cubist_link_path)
