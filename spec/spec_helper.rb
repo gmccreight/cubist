@@ -1,5 +1,7 @@
 require "cubist"
 
+require 'tempfile'
+
 def conf
   return @conf if @conf
   root = Dir.mktmpdir

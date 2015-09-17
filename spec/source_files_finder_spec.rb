@@ -1,9 +1,5 @@
 require_relative "./spec_helper"
 
-require 'tempfile'
-require 'fileutils'
-require 'pathname'
-
 describe Cubist::SourceFilesFinder do
 
   before :each do
