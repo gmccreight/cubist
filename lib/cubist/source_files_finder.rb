@@ -5,15 +5,16 @@ module Cubist
 
   class SourceFilesFinder
 
-    def initialize(root:)
-      @root = root
+    def initialize(conf:)
+      @conf = conf
     end
 
     def run
-      get_files(@root)
+      get_files
     end
 
-    private def get_files(dir)
+    private def get_files
+      dir = @conf.cubist_folder_full_path
       results = []
       Find.find(dir) do |path|
         if FileTest.directory?(path)

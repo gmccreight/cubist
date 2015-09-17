@@ -6,7 +6,7 @@ describe Cubist::LinkCreator do
     c = conf
     c.perspective = "available"
     @creator = Cubist::LinkCreator.new(conf: c)
-    @finder = Cubist::SourceFilesFinder.new(root: cubist_dir)
+    @finder = Cubist::SourceFilesFinder.new(conf: c)
   end
 
   it "should make a link the files" do

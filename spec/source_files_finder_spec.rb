@@ -7,7 +7,7 @@ require 'pathname'
 describe Cubist::SourceFilesFinder do
 
   before :each do
-    @finder = Cubist::SourceFilesFinder.new(root: cubist_dir)
+    @finder = Cubist::SourceFilesFinder.new(conf: conf)
   end
 
   it "should get all the files" do
