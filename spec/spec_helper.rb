@@ -4,13 +4,17 @@ require 'tempfile'
 
 def conf
   return @conf if @conf
-  root = Dir.mktmpdir
+  root = temp_dir
   Dir.mkdir(root + "/_cubist")
   @conf = Cubist::Conf.new(root, "_cubist")
 end
 
+def temp_dir
+  @temp_dir ||= Dir.mktmpdir
+end
+
 def project_dir
-  conf.root
+  temp_dir
 end
 
 def make_project_file(full_path, content: "")
