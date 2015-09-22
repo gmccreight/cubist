@@ -8,11 +8,16 @@ describe Cubist::App do
 
   it "should be able to load a pre-existing cubist perspective" do
     dir = temp_dir
-    make_perspective_file_at("alcohol")
-    make_cubist_link("app/models/item.rb", "alcohol/app/models/item.rb")
     @app.set_project_root(dir)
-    expect(@app.get_perspectives.size).to eq(1)
-    expect(@app.get_perspectives.first).to match(/\/alcohol\//)
+
+    @app.make_perspective("features/partner_editing_interface")
+    @app.make_perspective("features/availability_indicator")
+
+    make_cubist_link("app/models/item.rb", "features/partner_editing_interface/app/models/item.rb")
+
+    expect(@app.get_perspectives.size).to eq(2)
+    expect(@app.get_perspectives.first).to match(/\/features\/availability_indicator$/)
+    expect(@app.get_perspectives.last).to match(/\/features\/partner_editing_interface$/)
   end
 
 end

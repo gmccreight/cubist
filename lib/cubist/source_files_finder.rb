@@ -14,7 +14,7 @@ module Cubist
     end
 
     def get_perspectives
-      get_files.select{|x| x =~ /\.cubist_perspective$/}
+      get_files.select{|x| x =~ /\.cubist_perspective$/}.map{|x| x.gsub(/\/.cubist_perspective$/, '')}
     end
 
     private def get_files

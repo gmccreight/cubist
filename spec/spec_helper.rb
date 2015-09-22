@@ -5,7 +5,9 @@ require 'tempfile'
 def conf
   return @conf if @conf
   root = temp_dir
-  Dir.mkdir(root + "/_cubist")
+  if !File.exists?(root + "/_cubist")
+    Dir.mkdir(root + "/_cubist")
+  end
   @conf = Cubist::Conf.new(root, "_cubist")
 end
 
