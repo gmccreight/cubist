@@ -8,8 +8,6 @@ app = Cubist::App.new
 options = {}
 OptionParser.new do |opt|
   opt.on('--dir DIR') { |o| options[:dir] = o }
-  opt.on('--first_name FIRSTNAME') { |o| options[:first_name] = o }
-  opt.on('--last_name LASTNAME') { |o| options[:last_name] = o }
   opt.on('--make_perspective PERSPECTIVE') { |o| options[:make_perspective] = o }
 end.parse!
 
