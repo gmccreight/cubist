@@ -13,7 +13,8 @@ describe "cubist cli" do
   describe 'make a perspective' do
     it 'when it gets the right flags' do
       run('--make_perspective=features/coupons')
-      expect(`find #{temp_dir}`).to match(/features\/coupons\/.cubist_perspective/)
+      perspectives = run('--get_perspectives').chomp
+      expect(perspectives).to eq("features/coupons")
     end
   end
 end

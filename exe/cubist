@@ -9,6 +9,7 @@ options = {}
 OptionParser.new do |opt|
   opt.on('--dir DIR') { |o| options[:dir] = o }
   opt.on('--make_perspective PERSPECTIVE') { |o| options[:make_perspective] = o }
+  opt.on('--get_perspectives') { |o| options[:get_perspectives] = true }
 end.parse!
 
 if options.key?(:dir)
@@ -16,6 +17,11 @@ if options.key?(:dir)
 else
   STDERR.puts "please set the dir with --dir"
   exit 1
+end
+
+if options.key?(:get_perspectives)
+  puts app.get_perspectives()
+  exit 0
 end
 
 if options.key?(:make_perspective)

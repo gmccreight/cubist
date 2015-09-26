@@ -16,8 +16,8 @@ describe Cubist::App do
     make_cubist_link("app/models/item.rb", "features/partner_editing_interface/app/models/item.rb")
 
     expect(@app.get_perspectives.size).to eq(2)
-    expect(@app.get_perspectives.first).to match(/\/features\/availability_indicator$/)
-    expect(@app.get_perspectives.last).to match(/\/features\/partner_editing_interface$/)
+    expect(@app.get_perspectives.first).to eq("features/availability_indicator")
+    expect(@app.get_perspectives.last).to eq("features/partner_editing_interface")
   end
 
 end

@@ -23,7 +23,7 @@ module Cubist
     end
 
     def get_perspectives
-      SourceFilesFinder.new(conf: @conf).get_perspectives
+      ::Cubist::Perspective.new(conf: @conf).all
     end
 
     def make_perspective(relative_path)
