@@ -9,8 +9,12 @@ module Cubist
       @conf = conf
     end
 
-    def run
-      get_files
+    def run(relative: false)
+      files = get_files
+      if relative
+        files = files.map{|x| x.gsub(/^#{@conf.cubist_folder_full_path}\//, '')}
+      end
+      files
     end
 
     def get_perspectives
