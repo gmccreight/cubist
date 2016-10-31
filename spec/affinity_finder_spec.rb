@@ -6,27 +6,31 @@ describe Cubist::AffinityFinder do
     @finder = Cubist::AffinityFinder.new()
   end
 
+  def commit(files)
+    Cubist::Commit.new(sha: nil, files: files)
+  end
+
   it "should get all the files" do
     commits = [
-      Cubist::Commit.new(files: [
+      commit([
         "app/models/item.rb",
         "spec/models/item_spec.rb"
       ]),
-      Cubist::Commit.new(files: [
+      commit([
         "app/models/item.rb",
         "app/models/product.rb",
         "spec/models/item_spec.rb"
       ]),
-      Cubist::Commit.new(files: [
+      commit([
         "app/models/store.rb",
         "spec/models/store_spec.rb"
       ]),
-      Cubist::Commit.new(files: [
+      commit([
         "app/models/item.rb",
         "app/models/item_image.rb",
         "spec/models/item_spec.rb"
       ]),
-      Cubist::Commit.new(files: [
+      commit([
         "app/models/item.rb",
         "app/models/item_image.rb"
       ])

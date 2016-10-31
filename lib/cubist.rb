@@ -1,6 +1,7 @@
 require 'fileutils'
 require 'pathname'
 
+require_relative "cubist/adapter/git"
 require_relative "cubist/affinity_finder"
 require_relative "cubist/commit"
 require_relative "cubist/conf"
