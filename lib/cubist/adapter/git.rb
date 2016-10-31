@@ -5,9 +5,8 @@ module Cubist
     class Git
 
       def commits_containing_files(files:)
-        result = []
-        result << Cubist::Commit.new(files: files)
-        result
+        log_info = get_log_info(files: files)
+        parse_to_commits(log_lines: log_info.lines)
       end
 
       def parse_to_commits(log_lines:)
@@ -33,9 +32,9 @@ module Cubist
         result
       end
 
-      def get_git
-        # return the results of something like
-        # git log --oneline --stat -- path1 path2
+      def get_log_info(files:)
+        cmd = %Q{cd #{ENV["GIT_DIRECTORY"]}; #{ENV["GIT_BINARY"]} log --oneline --stat -- #{files.join(" ")}}
+        `#{cmd}`
       end
 
     end
