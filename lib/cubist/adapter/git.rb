@@ -33,6 +33,11 @@ module Cubist
         result
       end
 
+      def get_git
+        # return the results of something like
+        # git log --oneline --stat -- path1 path2
+      end
+
     end
 
   end
