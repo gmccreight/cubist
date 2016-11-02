@@ -35,11 +35,9 @@ module Cubist
       end
 
       def get_log_info(files:)
-        cmd = %Q{cd #{ENV["GIT_DIRECTORY"]}; #{ENV["GIT_BINARY"]} } +
+        cmd = %Q{cd #{ENV["CUBIST_ADAPTER_GIT_DIRECTORY"]}; #{ENV["CUBIST_ADAPTER_GIT_BINARY"]} } +
         %Q{log --oneline --stat --full-diff -n 100 -- #{files.join(" ")}}
-        # log.debug("starting git command")
         `#{cmd}`
-        # log.debug("finished get command")
       end
 
     end
