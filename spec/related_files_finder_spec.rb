@@ -1,9 +1,9 @@
 require_relative "./spec_helper"
 
-describe Cubist::AffinityFinder do
+describe Cubist::RelatedFilesFinder do
 
   before :each do
-    @finder = Cubist::AffinityFinder.new()
+    @finder = Cubist::RelatedFilesFinder.new()
   end
 
   def commit(files)

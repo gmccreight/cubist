@@ -1,6 +1,6 @@
 module Cubist
 
-  class AffinityFinder
+  class RelatedFilesFinder
 
     def find(files:, commits:)
       result = {}
