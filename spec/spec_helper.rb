@@ -13,6 +13,10 @@ def conf
   @conf = Cubist::Conf.new(root, "_cubist")
 end
 
+def app
+  @app = Cubist::App.new
+end
+
 def temp_dir
   @temp_dir ||= Dir.mktmpdir
 end

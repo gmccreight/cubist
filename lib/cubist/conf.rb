@@ -6,6 +6,10 @@ module Cubist
       root + "/" + folder
     end
 
+    def root_full_path
+      root
+    end
+
   end
 
 end

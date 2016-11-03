@@ -1,20 +1,19 @@
 module Cubist
 
-  # Given a set of links 
-
   class SourceFilesPersister
 
-    def initialize(conf:)
-      @conf = conf
+    def initialize(app:)
+      @app = app
     end
 
     def persist_paths(paths)
       data_structure = create_data_structure(paths)
-      data_structure
+      @app.write_conf_file(data_structure)
+      true
     end
 
     def create_data_structure(paths)
-
+      paths.join("\n")
     end
 
   end
