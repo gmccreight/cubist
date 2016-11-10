@@ -13,3 +13,5 @@ require_relative "cubist/related_files_finder"
 require_relative "cubist/source_files_finder"
 require_relative "cubist/source_files_persister"
 require_relative "cubist/version"
+
+require_relative "cubist/globals"
