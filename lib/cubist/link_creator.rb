@@ -13,7 +13,7 @@ module Cubist
     end
 
     def create_link_for_relative_path(relative_path)
-      return if ! @conf.perspective
+      return if ! @conf.angle
       create_link(@conf.root + "/" + relative_path, suggested_link_path_for(relative_path))
     end
 

@@ -22,12 +22,12 @@ module Cubist
       end
     end
 
-    def get_perspectives
-      ::Cubist::Perspective.new(conf: @conf).all
+    def get_angles
+      ::Cubist::Angle.new(conf: @conf).all
     end
 
-    def make_perspective(relative_path)
-      file_full_path = @conf.cubist_folder_full_path + "/" + relative_path + "/.cubist_perspective"
+    def make_angle(relative_path)
+      file_full_path = @conf.cubist_folder_full_path + "/" + relative_path + "/.cubist_angle"
       FileUtils.mkdir_p(Pathname.new(file_full_path).dirname.to_s)
       FileUtils.touch(file_full_path)
     end

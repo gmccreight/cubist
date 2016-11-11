@@ -32,8 +32,8 @@ def make_project_file(full_path, content: "")
   file_full_path
 end
 
-def make_perspective_file_at(relative_path)
-  file_full_path = conf.cubist_folder_full_path + "/" + relative_path + "/.cubist_perspective"
+def make_angle_file_at(relative_path)
+  file_full_path = conf.cubist_folder_full_path + "/" + relative_path + "/.cubist_angle"
   FileUtils.mkdir_p(Pathname.new(file_full_path).dirname.to_s)
   FileUtils.touch(file_full_path)
   file_full_path

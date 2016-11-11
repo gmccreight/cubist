@@ -1,6 +1,6 @@
 module Cubist
 
-  class Conf < Struct.new(:root, :folder, :perspective)
+  class Conf < Struct.new(:root, :folder, :angle)
 
     def cubist_folder_full_path
       root + "/" + folder

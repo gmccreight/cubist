@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Gordon McCreight"]
   spec.email         = ["gordon@mccreight.com"]
 
-  spec.summary       = %q{Maintain different perspectives on your code}
-  spec.description   = %q{Maintain different perspectives on your code}
+  spec.summary       = %q{Maintain different angles on your code}
+  spec.description   = %q{Maintain different angles on your code}
   spec.homepage      = "https://github.com/gmccreight/cubist"
   spec.license       = "MIT"
 

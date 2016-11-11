@@ -10,7 +10,7 @@ describe Cubist::SourceFilesPersister do
   end
 
   it "should persist the files into a hand-readable and editable data structure" do
-    make_perspective_file_at("features/availability")
+    make_angle_file_at("features/availability")
     file_and_link("app/models/item.rb", "features/availability/models/item.rb")
     file_and_link("app/models/product.rb", "features/availability/models/product.rb")
     file_and_link("app/services/product_finder_service.rb", "features/availability/services/product_finder_service.rb")

@@ -4,7 +4,7 @@ describe Cubist::LinkCreator do
 
   before :each do
     c = conf
-    c.perspective = "available"
+    c.angle = "available"
     @creator = Cubist::LinkCreator.new(conf: c)
     @finder = Cubist::SourceFilesFinder.new(conf: c)
   end

@@ -10,11 +10,11 @@ describe "cubist cli" do
       expect(run('--help')).to match(/Usage:/)
     end
   end
-  describe 'make a perspective' do
+  describe 'make a angle' do
     it 'when it gets the right flags' do
-      run('--make_perspective=features/coupons')
-      perspectives = run('--get_perspectives').chomp
-      expect(perspectives).to eq("features/coupons")
+      run('--make_angle=features/coupons')
+      angles = run('--get_angles').chomp
+      expect(angles).to eq("features/coupons")
     end
   end
 end

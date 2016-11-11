@@ -8,8 +8,8 @@ app = Cubist::App.new
 options = {}
 OptionParser.new do |opt|
   opt.on('--dir DIR') { |o| options[:dir] = o }
-  opt.on('--make_perspective PERSPECTIVE') { |o| options[:make_perspective] = o }
-  opt.on('--get_perspectives') { |o| options[:get_perspectives] = true }
+  opt.on('--make_angle PERSPECTIVE') { |o| options[:make_angle] = o }
+  opt.on('--get_angles') { |o| options[:get_angles] = true }
 end.parse!
 
 if options.key?(:dir)
@@ -19,11 +19,11 @@ else
   exit 1
 end
 
-if options.key?(:get_perspectives)
-  puts app.get_perspectives()
+if options.key?(:get_angles)
+  puts app.get_angles()
   exit 0
 end
 
-if options.key?(:make_perspective)
-  app.make_perspective(options[:make_perspective])
+if options.key?(:make_angle)
+  app.make_angle(options[:make_angle])
 end
