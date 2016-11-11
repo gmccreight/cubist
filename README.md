@@ -30,6 +30,8 @@ Or install it yourself as:
     * creates the `cubist` directory and `.cubist/conf` and `.cubist/files` configuration files.  You should add `cubist` and `.cubist` to your `.gitignore` file.
 * `cubist files add-related <path>` (interactive)
     * add files related (by inclusion in same commits) to the path given into the current angle
+* `cubist angle get`
+    * print the path to the current angle
 * `cubist angle set <path>`
     * makes the angle containing the file at the path the current angle
 * `cubist files snapshot`
