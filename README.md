@@ -2,11 +2,11 @@
 
 Cubist gives you multiple perspectives on your code.
 
-Building a complex feature in a framework that dictates a strict layout, such as Rails or Android, can create many files scattered throughout your codebase.  Cubist helps you organize logical alternative perspectives on your codebase by using directories and symlinks.  An example of this would be grouping all the files associated with a particular feature into a subdirectory, so it's easy to see all of them in one place.
+Building a complex feature in a framework that dictates a strict layout, such as Rails or Android, can create many files scattered throughout your codebase.  Cubist helps you organize logical alternative perspectives on your codebase by using directories and symlinks.  An example of this would be grouping all the files associated with a particular feature into a subdirectory, so it is easy to see all of them in one place.
 
 Additionally, Cubist helps you create and maintain these perspectives over time.  It can suggest additional files to add, and tracks files through deletions, renames, etc, allowing you to move around in your project's revision history without breaking your perspectives.
 
-Cubist aims to improve testing, too.  It provides you with the original locations of test files associated with a perspective so you can easily run the subset of your test suite associated with the current perspective.
+Finally, Cubist aims to improve testing, by helping you run only the tests associated with the current perspective.
 
 ## Installation
 
@@ -35,10 +35,10 @@ Or install it yourself as:
 * `cubist files snapshot`
     * takes the directory structure under the `cubist` directory and saves a version of it in `.cubist/files`
 * `cubist files restore`
-    * takes the version of the files listed in `.cubist/files` and creates actual links within the `cubist` folder
+    * takes the latest version of the files listed in `.cubist/files` and creates actual links within the `cubist` folder
 * `cubist files grep <pattern>`
     * return files in the current perspective matching the pattern (optionally return the symlinks instead)
-    * this is useful for a smart test runner
+    * this is useful for using with a test runner
 
 
 ## Development
