@@ -26,4 +26,5 @@ end
 
 if options.key?(:make_angle)
   app.make_angle(options[:make_angle])
+  exit 0
 end
