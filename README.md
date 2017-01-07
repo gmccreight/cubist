@@ -42,6 +42,11 @@ Or install it yourself as:
     * return files in the current angle matching the pattern (optionally return the symlinks instead)
     * this is useful for using with a test runner
 
+## TODO
+
+* Directory to filename prefix aliasing
+    * When in a monorepo, it can be very helpful to give a Hungarian notation style prefix on the symlink itself.  For example, if you are in a Rails project and some of the models you care about are vendored, and others are from a Rails engine, and yet others are from the app code itself, if you decide to display them side-by-side in a directory, having a prefix on the files as an indicator of their original placement in the repo can be very helpful.
+
 
 ## Development
 
