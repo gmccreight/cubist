@@ -4,6 +4,8 @@ Cubist gives you multiple angles on your code.
 
 Building a complex feature in a framework that dictates a strict layout, such as Rails or Android, can create many files scattered throughout your codebase.  Cubist helps you organize logical alternative angles on your codebase by using directories and symlinks.  An example of this would be grouping all the files associated with a particular feature into a subdirectory, so it is easy to see all of them in one place.
 
+Cubist does not change the structure of the code, but rather provides a single directory that you can add to the root of your project which will have all of the alternative views into your project.  For that reason, it is completely language and framework agnostic.
+
 Additionally, Cubist helps you create and maintain these angles over time.  It can suggest additional files to add, and tracks files through deletions, renames, etc, allowing you to move around in your project's revision history without breaking your angles.
 
 Finally, Cubist aims to improve testing, by helping you run only the tests associated with the current angle.
