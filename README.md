@@ -75,6 +75,12 @@ engine, and yet others are from the app code itself, if you decide to display
 them side-by-side in a directory, having a prefix on the files as an indicator
 of their original placement in the repo can be very helpful.
 
+### Smart Readme linking
+
+Within the Readme sections of the angles, it can be helpful to point to
+sections within the code, not just to files.  This is particularly true if you
+happen to be working with legacy code that does not have good separation of
+concerns within the files.
 
 ## Development
 
