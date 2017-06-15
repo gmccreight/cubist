@@ -8,7 +8,7 @@ app = Cubist::App.new
 options = {}
 OptionParser.new do |opt|
   opt.on('--dir DIR') { |o| options[:dir] = o }
-  opt.on('--make_angle ANNGLE') { |o| options[:make_angle] = o }
+  opt.on('--make_angle ANGLE') { |o| options[:make_angle] = o }
   opt.on('--get_angles') { |o| options[:get_angles] = true }
 end.parse!
 
