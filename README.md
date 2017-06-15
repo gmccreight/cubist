@@ -4,11 +4,11 @@ Cubist gives you multiple angles on your code.
 
 Building a complex feature in a framework that dictates a strict layout, such
 as Rails or Android, can create many files scattered throughout your codebase.
-Cubist helps you organize logical alternative angles on your codebase by using
-directories and symlinks.  An example of this would be grouping all the files
-associated with a particular feature into a subdirectory, so it is easy to see
-all of them in one place.  Another example might be to create groupings of
-files associated with various bug fixes.
+Cubist helps you organize logical alternative 'angles' on your codebase by
+using directories and symlinks.  An example of this would be grouping all the
+files associated with a particular feature into a subdirectory, so it is easy
+to see all of them in one place.  Another example might be to create groupings
+of files associated with various bug fixes.
 
 Cubist does not change the structure of the code, but rather provides a single
 directory that you can add to the root of your project which will have all of
