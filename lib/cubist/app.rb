@@ -32,6 +32,15 @@ module Cubist
       FileUtils.touch(file_full_path)
     end
 
+    def get_related_files(relative_path)
+      finder = Cubist::RelatedFilesFinder.new()
+      commits = Cubist::Adapter::Git.new.commits_containing_files(files: [relative_path])
+      files = finder.find(files: [relative_path], commits: commits)
+      files[relative_path].each do |file|
+        puts file
+      end
+    end
+
     def write_conf_file(data)
       File.write(conf_file_path, data)
     end

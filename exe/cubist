@@ -10,6 +10,7 @@ OptionParser.new do |opt|
   opt.on('--dir DIR') { |o| options[:dir] = o }
   opt.on('--make_angle ANGLE') { |o| options[:make_angle] = o }
   opt.on('--get_angles') { |o| options[:get_angles] = true }
+  opt.on('--get_related_files FILE') { |o| options[:get_related_files] = o }
 end.parse!
 
 if options.key?(:dir)
@@ -26,5 +27,10 @@ end
 
 if options.key?(:make_angle)
   app.make_angle(options[:make_angle])
+  exit 0
+end
+
+if options.key?(:get_related_files)
+  app.get_related_files(options[:get_related_files])
   exit 0
 end
