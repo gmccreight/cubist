@@ -4,14 +4,7 @@ describe Cubist::RelatedFilesFinder do
 
   before :each do
     @finder = Cubist::RelatedFilesFinder.new()
-  end
-
-  def commit(files)
-    Cubist::Commit.new(sha: nil, files: files)
-  end
-
-  it "should get all the files" do
-    commits = [
+    @commits = [
       commit([
         "app/models/item.rb",
         "spec/models/item_spec.rb"
@@ -35,7 +28,14 @@ describe Cubist::RelatedFilesFinder do
         "app/models/item_image.rb"
       ])
     ]
-    files = @finder.find(files: ["app/models/item.rb"], commits: commits)
+  end
+
+  def commit(files)
+    Cubist::Commit.new(sha: nil, files: files)
+  end
+
+  it "should get all related files ranked by the number of times they have been committed together" do
+    files = @finder.find(files: ["app/models/item.rb"], commits: @commits)
     expect(files).to eq(
       {"app/models/item.rb" =>
         [
@@ -45,7 +45,27 @@ describe Cubist::RelatedFilesFinder do
         ]
       }
     )
-    files = @finder.find(files: ["spec/models/store_spec.rb"], commits: commits)
+
+    10.times {
+      @commits << commit([
+        "app/models/item.rb",
+        "app/models/product.rb",
+      ])
+    }
+
+    files = @finder.find(files: ["app/models/item.rb"], commits: @commits)
+    expect(files).to eq(
+      {"app/models/item.rb" =>
+        [
+        "app/models/product.rb",
+        "spec/models/item_spec.rb",
+        "app/models/item_image.rb"
+        ]
+      }
+    )
+  end
+  it "should work with an alternative set of data" do
+    files = @finder.find(files: ["spec/models/store_spec.rb"], commits: @commits)
     expect(files).to eq(
       {"spec/models/store_spec.rb" => ["app/models/store.rb"]}
     )
