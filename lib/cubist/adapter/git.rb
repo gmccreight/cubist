@@ -36,7 +36,7 @@ module Cubist
 
       def get_log_info(files:)
         cmd = %Q{cd #{ENV["CUBIST_ADAPTER_GIT_DIRECTORY"]}; #{ENV["CUBIST_ADAPTER_GIT_BINARY"]} } +
-        %Q{log --oneline --stat --full-diff -n 100 -- #{files.join(" ")}}
+        %Q{log --oneline --stat --stat-width=300 --full-diff -n 100 -- #{files.join(" ")}}
         `#{cmd}`
       end
 
