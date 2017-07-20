@@ -45,7 +45,11 @@ module Cubist
           unlinked << file
         end
       end
-      puts alive.map{|x| "alive #{x}"} + unlinked.map{|x| "unlinked #{x}"}
+      if unlinked.size > 0
+        puts alive.map{|x| "alive #{x}"} + unlinked.map{|x| "unlinked #{x}"}
+      else
+        puts alive.map{|x| x}
+      end
     end
 
     def write_conf_file(data)
