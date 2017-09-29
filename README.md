@@ -6,23 +6,34 @@ Building a complex feature in a framework that dictates a strict layout, such
 as Rails or Android, can create many files scattered throughout your codebase.
 Cubist helps you organize logical alternative 'angles' on your codebase by
 using directories and symlinks.  An example of this would be grouping all the
-files associated with a particular feature into a subdirectory, so it is easy
-to see all of them in one place.  Another example might be to create groupings
-of files associated with various bug fixes.
+files associated with a particular feature into a directory with logical
+subdirectories, so it is easy to see all of the files associated with that
+feature in one place.  Another example might be to create groupings of files
+associated with various bug fixes.
 
-Cubist does not change the structure of the code, but rather provides a single
-directory that you can add to the root of your project which will have all of
-the alternative views into your project.  Those views can be arbitrarily nested
-within the root directory.  For that reason, it is completely language and
-framework agnostic.
+Cubist does not change the structure of your code, but rather provides a single
+directory that you add to the root of your project that contains all of the
+alternative angles.  Those angles can be arbitrarily nested within the root
+cubist directory.
 
-Additionally, Cubist helps you create and maintain these angles over time.  It
-can suggest additional files to add, and tracks files through deletions,
-renames, etc, allowing you to move around in your project's revision history
-without breaking your angles.
+Cubist is completely language and framework agnostic; however it requires the
+project to be version controlled by git.
 
-Finally, Cubist aims to improve testing, by helping you run only the tests
-associated with the current angle.
+Cubist helps you create and maintain the angles over time.  For eaxmple, using
+your git history, it can suggest additional files to add to an angle, and
+tracks files through deletions, renames, etc, allowing you to move around in
+your project's revision history without breaking your angles.
+
+Finally, Cubist aims to improve testing by helping you run only the tests
+associated with the current angle.  For very large projects, this can be a boon
+to productivity if you maintain the tests that directly test a feature as well
+as tangentially-related tests that have been sensitive to changes within that
+features.
+
+With Cubist you can also maintain angles that cross project boundaries.  For
+example, if you have a monorepo with many projects, a single angle can contain
+code and tests from multiple, related projects, and Cubist can help your test
+runner identify the context for each of the tests.
 
 ## Installation
 
@@ -82,7 +93,14 @@ of their original placement in the repo can be very helpful.
 Within the Readme sections of the angles, it can be helpful to point to
 sections within the code, not just to files.  This is particularly true if you
 happen to be working with legacy code that does not have good separation of
-concerns within the files.
+concerns within the files.  Additionally, it can tranclude the code into the
+documentation, allowing you to use a literate style to document your code.
+
+### Consistency checks and fixes
+
+Code will change over time.  Cubist uses git's history to suggest modifications
+to its internal data structure to make sure your angles remain consistent with
+the code as it changes.
 
 ## Development
 
