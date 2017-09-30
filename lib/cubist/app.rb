@@ -35,10 +35,11 @@ module Cubist
     def get_related_files(relative_path)
       finder = Cubist::RelatedFilesFinder.new()
       commits = Cubist::Adapter::Git.new.commits_containing_files(files: [relative_path])
-      files = finder.find(files: [relative_path], commits: commits)
+      result = finder.find(files: [relative_path], commits: commits)
+      files = result[:per_file][relative_path]
       alive = []
       unlinked = []
-      files[relative_path].each do |file|
+      files.each do |file|
         if File.exists?(ENV["CUBIST_ADAPTER_GIT_DIRECTORY"] + "/" + file)
           alive << file
         else

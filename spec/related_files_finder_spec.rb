@@ -34,16 +34,20 @@ describe Cubist::RelatedFilesFinder do
     Cubist::Commit.new(sha: nil, files: files)
   end
 
+  def expect_per_file_for(filename, expected_files)
+    files = @finder.find(files: [filename], commits: @commits)
+    per_file = files[:per_file][filename]
+    expect(per_file).to eq(expected_files)
+  end
+
   it "should get all related files ranked by the number of times they have been committed together" do
-    files = @finder.find(files: ["app/models/item.rb"], commits: @commits)
-    expect(files).to eq(
-      {"app/models/item.rb" =>
-        [
+    expect_per_file_for(
+      "app/models/item.rb", 
+      [
         "spec/models/item_spec.rb",
         "app/models/item_image.rb",
         "app/models/product.rb"
-        ]
-      }
+      ]
     )
 
     10.times {
@@ -53,28 +57,16 @@ describe Cubist::RelatedFilesFinder do
       ])
     }
 
-    files = @finder.find(files: ["app/models/item.rb"], commits: @commits)
-    expect(files).to eq(
-      {"app/models/item.rb" =>
-        [
+    expect_per_file_for(
+      "app/models/item.rb", 
+      [
         "app/models/product.rb",
         "spec/models/item_spec.rb",
         "app/models/item_image.rb"
-        ]
-      }
+      ]
     )
   end
   it "should work with an alternative set of data" do
-    files = @finder.find(files: ["spec/models/store_spec.rb"], commits: @commits)
-    expect(files).to eq(
-      {"spec/models/store_spec.rb" => ["app/models/store.rb"]}
-    )
+    expect_per_file_for( "spec/models/store_spec.rb", ["app/models/store.rb"])
   end
-  it "should return the scores if you ask for them" do
-    files = @finder.find(files: ["spec/models/store_spec.rb"], commits: @commits, keep_scores: true)
-    expect(files).to eq(
-      {"spec/models/store_spec.rb" => [["app/models/store.rb", 1]]}
-    )
-  end
-
 end
