@@ -74,8 +74,9 @@ Or install it yourself as:
     * return files in the current angle matching the pattern (optionally
       return the symlinks instead)
     * this is useful for using with a test runner
-* `cubist --get_related_files <filename>`
-    * search git history for files altered alongside the file passed
+* `cubist --get_related_files <filenames>`
+    * search git history for files altered alongside the files passed.  Returns
+      ranked set of file.
 
 ## TODO
 
