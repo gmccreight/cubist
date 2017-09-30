@@ -2,15 +2,19 @@ module Cubist
 
   class RelatedFilesFinder
 
-    def find(files:, commits:)
+    def find(files:, commits:, keep_scores: false)
       result = {}
       files.each do |file|
-        result[file] = _related_files(file: file, commits: commits)
+        result[file] = _related_files(
+          file: file,
+          commits: commits,
+          keep_scores: keep_scores
+        )
       end
       result
     end
 
-    def _related_files(file:, commits:)
+    def _related_files(file:, commits:, keep_scores:)
       count_for = {}
       count_for.default = 0
       commits.each do |commit|
@@ -21,7 +25,12 @@ module Cubist
           count_for[f] += 1
         end
       end
-      count_for.sort_by{ |k, v| v }.reverse.map{|x| x[0]}
+      sorted = count_for.sort_by{ |k, v| v }.reverse
+      if keep_scores
+        sorted
+      else
+        sorted.map{|x| x[0]}
+      end
     end
 
   end

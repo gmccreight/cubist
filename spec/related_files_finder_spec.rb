@@ -70,5 +70,11 @@ describe Cubist::RelatedFilesFinder do
       {"spec/models/store_spec.rb" => ["app/models/store.rb"]}
     )
   end
+  it "should return the scores if you ask for them" do
+    files = @finder.find(files: ["spec/models/store_spec.rb"], commits: @commits, keep_scores: true)
+    expect(files).to eq(
+      {"spec/models/store_spec.rb" => [["app/models/store.rb", 1]]}
+    )
+  end
 
 end
