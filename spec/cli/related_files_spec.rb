@@ -16,6 +16,7 @@ describe 'get related files' do
     `cd #{temp_dir}; echo 2 > 2.txt; git add .; git commit -m 'commit 2'`
     `cd #{temp_dir}; echo 3 > 3.txt; echo 1_2 >> 1.txt; git add .; git commit -m 'commit 3'`
     `cd #{temp_dir}; echo 3_2 >> 3.txt; echo 2_2 >> 2.txt; git add .; git commit -m 'commit 4'`
+    `cd #{temp_dir}; echo 3_3 >> 3.txt; echo 1_3 >> 1.txt; git add .; git commit -m 'commit 5'`
 
     related_files = run('--get_related_files=3.txt', "CUBIST_ADAPTER_GIT_BINARY=git CUBIST_ADAPTER_GIT_DIRECTORY=#{temp_dir}").chomp
     expect(related_files).to eq("1.txt\n2.txt")

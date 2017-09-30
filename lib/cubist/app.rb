@@ -32,11 +32,11 @@ module Cubist
       FileUtils.touch(file_full_path)
     end
 
-    def get_related_files(relative_path)
+    def get_related_files(relative_paths)
       finder = Cubist::RelatedFilesFinder.new()
-      commits = Cubist::Adapter::Git.new.commits_containing_files(files: [relative_path])
-      result = finder.find(files: [relative_path], commits: commits)
-      files = result[:per_file][relative_path].map{|x| x[:file]}
+      commits = Cubist::Adapter::Git.new.commits_containing_files(files: relative_paths)
+      result = finder.find(files: relative_paths, commits: commits)
+      files = result[:all].map{|x| x[:file]}
       alive = []
       unlinked = []
       files.each do |file|
