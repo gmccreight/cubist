@@ -22,11 +22,15 @@ module Cubist
           commits: commits
         )
         files_and_scores.each do |file_and_score|
-          global_score_for[file_and_score[0]] += file_and_score[1]
+          global_score_for[file_and_score[:file]] += file_and_score[:score]
         end
-        result[:per_file][file] = files_and_scores.map{|x| x[0]}
+        result[:per_file][file] = files_and_scores
       end
-      result[:all] = global_score_for.sort_by{ |k, v| v }.reverse.map{|x| x[0]}
+      all_result = []
+      global_score_for.sort_by{ |k, v| v }.reverse.each do |k, v|
+        all_result << {file: k, score: v}
+      end
+      result[:all] = all_result
       result
     end
 
@@ -41,7 +45,11 @@ module Cubist
           count_for[f] += 1
         end
       end
-      count_for.sort_by{ |k, v| v }.reverse
+      result = []
+      count_for.sort_by{ |k, v| v }.reverse.each do |k, v|
+        result << {file: k, score: v}
+      end
+      result
     end
 
   end

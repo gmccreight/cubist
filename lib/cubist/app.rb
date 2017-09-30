@@ -36,7 +36,7 @@ module Cubist
       finder = Cubist::RelatedFilesFinder.new()
       commits = Cubist::Adapter::Git.new.commits_containing_files(files: [relative_path])
       result = finder.find(files: [relative_path], commits: commits)
-      files = result[:per_file][relative_path]
+      files = result[:per_file][relative_path].map{|x| x[:file]}
       alive = []
       unlinked = []
       files.each do |file|
