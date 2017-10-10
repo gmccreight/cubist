@@ -12,11 +12,15 @@ module Cubist
       )
 
       if file
+        if files.select{|x| x[:link_basename] == file}.size > 1
+          return :fail, :more_than_one_matching
+        end
         files.each do |f|
-          if f[:basename] == file
-            return :success, f[:folder] + "/" + f[:basename]
+          if f[:link_basename] == file
+            return :success, f[:link_directory] + "/" + f[:link_basename]
           end
         end
+        return :fail, :no_matching_file
       else
         return :fail, :no_link
       end
