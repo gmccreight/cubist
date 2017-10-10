@@ -47,3 +47,8 @@ def file_and_link(project_file_path, cubist_link_path)
   project_file_full_path = make_project_file(project_file_path)
   make_cubist_link(project_file_full_path, cubist_link_path)
 end
+
+RSpec.configure do |config|
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
+end
