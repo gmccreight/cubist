@@ -11,13 +11,15 @@ module Cubist
         cursor_column: column
       )
 
-      files.each do |f|
-        if f[:path].match(/(^|\/)#{file}$/)
-          return f[:path]
+      if file
+        files.each do |f|
+          if f[:basename] == file
+            return :success, f[:folder] + "/" + f[:basename]
+          end
         end
+      else
+        return :fail, :no_link
       end
-
-      return nil
     end
 
   end
