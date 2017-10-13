@@ -2,7 +2,7 @@ module Cubist
 
   class ReadmeLinkToFileLine
 
-    def self.dest_for(readme:, row:, column:, files:)
+    def self.dest_for(readme:, row:, column:, aliases:)
 
       line = readme.lines[row]
 
@@ -12,21 +12,21 @@ module Cubist
       )
 
       if file
-        if files.select{|x| x[:link_basename] == file}.size > 1
+        if aliases.select{|x| x.basename == file}.size > 1
           return :fail, :more_than_one_matching, nil
         end
-        files.each do |f|
-          if f[:link_basename] == file
+        aliases.each do |f|
+          if f.basename == file
             matched_line = nil
             if regex
-              f[:content].lines.each_with_index do |line, index|
-                if line.match(/#{regex.sub(/^[\/]/, '').sub(/[\/]$/, '')}/)
+              f.content.lines.each_with_index do |inner_line, index|
+                if inner_line.match(/#{regex.sub(/^[\/]/, '').sub(/[\/]$/, '')}/)
                   matched_line = index
                   break
                 end
               end
             end
-            return :success, f[:link_directory] + "/" + f[:link_basename], matched_line
+            return :success, f.dir + "/" + f.basename, matched_line
           end
         end
         return :fail, :no_matching_file, nil

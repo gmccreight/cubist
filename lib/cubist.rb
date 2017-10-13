@@ -3,6 +3,7 @@ require 'pathname'
 
 require_relative "cubist/adapter/git"
 require_relative "cubist/angle"
+require_relative "cubist/alias"
 require_relative "cubist/app"
 require_relative "cubist/commit"
 require_relative "cubist/conf"
