@@ -23,7 +23,7 @@ module Cubist
     end
 
     def get_angles
-      ::Cubist::Angle.new(conf: @conf).all
+      ::Cubist::Angle.all(conf: @conf)
     end
 
     def make_angle(relative_path)
@@ -63,6 +63,19 @@ module Cubist
 
     def conf_file_path
       @conf.root_full_path + "/.cubist_data"
+    end
+
+    def get_destination_for(doc:, row:, column:)
+      angle = ::Cubist::Angle.angle_for_nested_file(conf: @conf, filename: doc)
+      aliases = angle.aliases
+      doc_text = File.read(doc)
+      result, filename, line_num = ReadmeLinkToFileLine.dest_for(
+        readme: doc_text,
+        row: row,
+        column: column,
+        aliases: aliases
+      )
+      JSON.pretty_generate(result: result, filename: filename, line_num: line_num)
     end
 
   end

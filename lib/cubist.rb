@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'pathname'
+require 'json'
 
 require_relative "cubist/adapter/git"
 require_relative "cubist/angle"
