@@ -2,15 +2,37 @@ require_relative "./cli_helper"
 
 describe "readme_link" do
 
-  it 'gets the file under the cursor' do
+  before :each do
     `cd #{temp_dir}; touch .cubist_angle`
     `cd #{temp_dir}; echo testing > some_target_file`
     `cd #{temp_dir}; ln -s some_target_file my_alias`
-    `cd #{temp_dir}; echo "link to [[my_alias]]" > doc.markdown`
-    destination_json = run("--doc=#{temp_dir}/doc.markdown --doc_row=0 --doc_column=10").chomp
-    result = JSON.parse(destination_json)
-    expect(result["result"]).to eq("success")
-    expect(result["filename"]).to match(/my_alias/)
+    `cd #{temp_dir}; echo "link to [[my_alias]] [[not_a_file]]" > doc.markdown`
+  end
+
+  def for_column(column)
+    x = run("--doc=#{temp_dir}/doc.markdown --doc_row=0 --doc_column=#{column}")
+    JSON.parse(x)
+  end
+
+  context "cursor over a link" do
+    it 'should return file info if actually points to a file' do
+      x = for_column(10)
+      expect(x["result"]).to eq("success")
+      expect(x["filename"]).to match(/my_alias/)
+    end
+    it 'should return no file if link does not match a file' do
+      x = for_column(24)
+      expect(x["result"]).to eq("fail")
+      expect(x["filename"]).to eq('no_matching_file')
+    end
+  end
+
+  context "cursor not over a link" do
+    it 'should return failure' do
+      x = for_column(2)
+      expect(x["result"]).to eq("fail")
+      expect(x["filename"]).to eq('no_link')
+    end
   end
 
 end
