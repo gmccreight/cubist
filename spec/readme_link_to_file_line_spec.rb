@@ -27,18 +27,18 @@ module Cubist
     context "cursor on the link" do
 
       def link_for_readme(readme)
-        result, filename, line_num = @klass.dest_for(
+        result, message, filename, line_num = @klass.dest_for(
           readme: readme,
           row: 0,
           column:9,
           aliases: @aliases
         )
-        return result, filename, line_num
+        return result, message, filename, line_num
       end
 
       it "should be able to identify the whole file you should go to if no regex" do
         readme = "Before [[file1]] after"
-        result, filename, line_num = link_for_readme(readme)
+        result, _message, filename, _line_num = link_for_readme(readme)
         expect(result).to eq(:success)
         expect(filename).to eq("folder1/file1")
       end
@@ -47,7 +47,7 @@ module Cubist
 
         it "should be able to identify the file and line if regex" do
           readme = "Before [[file1:/line2/]] after"
-          result, filename, line_num = link_for_readme(readme)
+          result, _message, filename, line_num = link_for_readme(readme)
           expect(result).to eq(:success)
           expect(filename).to eq("folder1/file1")
           expect(line_num).to eq(2)
@@ -55,7 +55,7 @@ module Cubist
 
         it "should return the first line matching regex" do
           readme = "Before [[file1:/line/]] after"
-          result, filename, line_num = link_for_readme(readme)
+          result, _message, filename, line_num = link_for_readme(readme)
           expect(result).to eq(:success)
           expect(filename).to eq("folder1/file1")
           expect(line_num).to eq(0)
@@ -72,21 +72,21 @@ module Cubist
           "line0\nline1\nline2\n"
         )
         readme = "Before [[file1]] after"
-        result, filename, line_num = link_for_readme(readme)
+        result, message, _filename, _line_num = link_for_readme(readme)
         expect(result).to eq(:fail)
-        expect(filename).to eq(:more_than_one_matching)
+        expect(message).to eq(:more_than_one_matching)
       end
 
       it "should not me able to find a file that does not exist" do
         readme = "Before [[file8]] after"
-        result, filename, line_num = link_for_readme(readme)
+        result, message, _filename, _line_num = link_for_readme(readme)
         expect(result).to eq(:fail)
-        expect(filename).to eq(:no_matching_file)
+        expect(message).to eq(:no_matching_file)
       end
 
       it "should work in a multi-line readme" do
         readme = "Line before\n[[file1]] after"
-        result, filename, line_num = @klass.dest_for(
+        result, _message, filename, _line_num = @klass.dest_for(
           readme: readme,
           row: 1,
           column:2,
@@ -102,9 +102,10 @@ module Cubist
 
       it "should not return a file" do
         readme = "Before [[file1]] after"
-        result, filename, line_num = @klass.dest_for(readme: readme, row: 0, column:0, aliases: @aliases)
+        result, message, _filename, _line_num =
+          @klass.dest_for(readme: readme, row: 0, column:0, aliases: @aliases)
         expect(result).to eq(:fail)
-        expect(filename).to eq(:no_link)
+        expect(message).to eq(:no_link)
       end
 
     end

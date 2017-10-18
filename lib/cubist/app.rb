@@ -69,13 +69,13 @@ module Cubist
       angle = ::Cubist::Angle.angle_for_nested_file(conf: @conf, filename: doc)
       aliases = angle.aliases
       doc_text = File.read(doc)
-      result, filename, line_num = ReadmeLinkToFileLine.dest_for(
+      result, message, filename, line_num = ReadmeLinkToFileLine.dest_for(
         readme: doc_text,
         row: row,
         column: column,
         aliases: aliases
       )
-      JSON.pretty_generate(result: result, filename: filename, line_num: line_num)
+      JSON.pretty_generate(result: result, message: message, filename: filename, line_num: line_num)
     end
 
   end

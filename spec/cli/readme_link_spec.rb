@@ -23,7 +23,7 @@ describe "readme_link" do
     it 'should return no file if link does not match a file' do
       x = for_column(24)
       expect(x["result"]).to eq("fail")
-      expect(x["filename"]).to eq('no_matching_file')
+      expect(x["message"]).to eq('no_matching_file')
     end
   end
 
@@ -31,7 +31,7 @@ describe "readme_link" do
     it 'should return failure' do
       x = for_column(2)
       expect(x["result"]).to eq("fail")
-      expect(x["filename"]).to eq('no_link')
+      expect(x["message"]).to eq('no_link')
     end
   end
 

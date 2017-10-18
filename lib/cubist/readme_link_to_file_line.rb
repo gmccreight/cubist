@@ -13,7 +13,7 @@ module Cubist
 
       if file
         if aliases.select{|x| x.basename == file}.size > 1
-          return :fail, :more_than_one_matching, nil
+          return :fail, :more_than_one_matching, nil, nil
         end
         aliases.each do |f|
           if f.basename == file
@@ -26,12 +26,12 @@ module Cubist
                 end
               end
             end
-            return :success, f.dir + "/" + f.basename, matched_line
+            return :success, :file_found, f.dir + "/" + f.basename, matched_line
           end
         end
-        return :fail, :no_matching_file, nil
+        return :fail, :no_matching_file, nil, nil
       else
-        return :fail, :no_link, nil
+        return :fail, :no_link, nil, nil
       end
     end
 
