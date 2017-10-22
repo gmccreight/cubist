@@ -7,12 +7,8 @@ module Cubist
         beginning, ending = Regexp.last_match.offset(0)
         ending -= 1
         if cursor_column >= beginning and cursor_column <= ending
-          file_and_maybe_regex = Regexp.last_match.captures[0]
-          if file_and_maybe_regex =~ /:/
-            return file_and_maybe_regex.split(/:/)
-          else
-            return file_and_maybe_regex, nil
-          end
+          link_content = Regexp.last_match.captures[0]
+          return ReadmeLinkToFileLine.link_content_splitter(link_content)
         end
       end
 

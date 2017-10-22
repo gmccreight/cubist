@@ -19,8 +19,9 @@ describe "readme_link" do
       x = for_column(10)
       expect(x["result"]).to eq("success")
       expect(x["filename"]).to match(/my_alias$/)
+      expect(x["line_num"]).to eq(nil)
     end
-    it 'should return the line for a regex link' do
+    it 'should additionally return the line for a regex link' do
       x = for_column(40)
       expect(x["result"]).to eq("success")
       expect(x["filename"]).to match(/my_alias$/)
