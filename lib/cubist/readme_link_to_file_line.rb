@@ -15,13 +15,13 @@ module Cubist
       if file
         return alias_for(file: file, regex: regex, aliases: aliases)
       else
-        return :fail, :no_link, nil, nil
+        return wrap_result(:failure, :no_link, nil, nil)
       end
     end
 
     def self.alias_for(file:, regex:, aliases:)
       if aliases.select{|x| x.basename == file}.size > 1
-        return :fail, :more_than_one_matching, nil, nil
+        return wrap_result(:failure, :more_than_one_matching, nil, nil)
       end
       aliases.each do |f|
         if f.basename == file
@@ -34,10 +34,10 @@ module Cubist
               end
             end
           end
-          return :success, :file_found, f.dir + "/" + f.basename, matched_line
+          return wrap_result(:success, :file_found, f.dir + "/" + f.basename, matched_line)
         end
       end
-      return :fail, :no_matching_file, nil, nil
+      return wrap_result(:failure, :no_matching_file, nil, nil)
     end
 
     def self.link_content_splitter(link_content)
@@ -46,6 +46,10 @@ module Cubist
       else
         return link_content, nil
       end
+    end
+
+    def self.wrap_result(status, message, file, line_num)
+      {status: status, message: message, file: file, line_num: line_num}
     end
 
   end

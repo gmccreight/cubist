@@ -17,19 +17,19 @@ describe "readme_link" do
   context "cursor over a link" do
     it 'should return file info if actually points to a file' do
       x = for_column(10)
-      expect(x["result"]).to eq("success")
-      expect(x["filename"]).to match(/my_alias$/)
+      expect(x["status"]).to eq("success")
+      expect(x["file"]).to match(/my_alias$/)
       expect(x["line_num"]).to eq(nil)
     end
     it 'should additionally return the line for a regex link' do
       x = for_column(40)
-      expect(x["result"]).to eq("success")
-      expect(x["filename"]).to match(/my_alias$/)
+      expect(x["status"]).to eq("success")
+      expect(x["file"]).to match(/my_alias$/)
       expect(x["line_num"]).to eq(2)
     end
     it 'should return no file if link does not match a file' do
       x = for_column(24)
-      expect(x["result"]).to eq("fail")
+      expect(x["status"]).to eq("failure")
       expect(x["message"]).to eq('no_matching_file')
     end
   end
@@ -37,7 +37,7 @@ describe "readme_link" do
   context "cursor not over a link" do
     it 'should return failure' do
       x = for_column(2)
-      expect(x["result"]).to eq("fail")
+      expect(x["status"]).to eq("failure")
       expect(x["message"]).to eq('no_link')
     end
   end

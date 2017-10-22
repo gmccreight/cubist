@@ -8,12 +8,11 @@ module Cubist
       matches.each do |x|
         link_content = x[1]
         file, regex = ReadmeLinkToFileLine.link_content_splitter(link_content)
-        status, message, file, line_num = ReadmeLinkToFileLine.alias_for(file: file, regex: regex, aliases: aliases)
-        detail = {result: status, message: message, file: file, line_num: line_num}
-        result[:details] << detail
+        result_hash = ReadmeLinkToFileLine.alias_for(file: file, regex: regex, aliases: aliases)
+        result[:details] << result_hash
       end
 
-      if result[:details].any?{|x| x[:result] != :success}
+      if result[:details].any?{|x| x[:status] != :success}
         result[:summary][:status] = :failure
       else
         result[:summary][:status] = :success
