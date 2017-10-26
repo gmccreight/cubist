@@ -1,11 +1,11 @@
-require_relative "./spec_helper"
+require_relative "../spec_helper"
 
 module Cubist
 
-  describe ReadmeLinkToFileLine do
+  describe Docs::LinkToFileLine do
 
     before :each do
-      @klass = ReadmeLinkToFileLine
+      @klass = Docs::LinkToFileLine
       @aliases = [
         Alias.new(
           "folder1",

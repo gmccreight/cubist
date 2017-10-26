@@ -1,6 +1,6 @@
 require_relative "./cli_helper"
 
-describe "readme_link" do
+describe "docs_link" do
 
   before :each do
     `cd #{temp_dir}; touch .cubist_angle`

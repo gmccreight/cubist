@@ -69,7 +69,7 @@ module Cubist
       angle = ::Cubist::Angle.angle_for_nested_file(conf: @conf, filename: doc)
       aliases = angle.aliases
       doc_text = File.read(doc)
-      result_hash = ReadmeLinkToFileLine.dest_for(
+      result_hash = Docs::LinkToFileLine.dest_for(
         readme: doc_text,
         row: row,
         column: column,
