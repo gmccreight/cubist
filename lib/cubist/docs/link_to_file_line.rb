@@ -4,10 +4,9 @@ module Cubist
 
     class LinkToFileLine
 
-      # TODO - extract this to separate place
-      def self.dest_for(readme:, row:, column:, aliases:)
+      def self.dest_for(doc_content:, row:, column:, aliases:)
 
-        line = readme.lines[row]
+        line = doc_content.lines[row]
 
         file, regex = LinkTranslator.link_regex_for(
           line: line,
@@ -40,14 +39,6 @@ module Cubist
           end
         end
         return wrap_result(:failure, :no_matching_file, nil, nil)
-      end
-
-      def self.link_content_splitter(link_content)
-        if link_content =~ /:/
-          return link_content.split(/:/)
-        else
-          return link_content, nil
-        end
       end
 
       def self.wrap_result(status, message, file, line_num)

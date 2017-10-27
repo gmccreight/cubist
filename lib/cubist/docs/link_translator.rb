@@ -10,7 +10,7 @@ module Cubist
           ending -= 1
           if cursor_column >= beginning and cursor_column <= ending
             link_content = Regexp.last_match.captures[0]
-            return LinkToFileLine.link_content_splitter(link_content)
+            return Link.content_splitter(link_content)
           end
         end
 

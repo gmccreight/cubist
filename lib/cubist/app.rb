@@ -70,7 +70,7 @@ module Cubist
       aliases = angle.aliases
       doc_text = File.read(doc)
       result_hash = Docs::LinkToFileLine.dest_for(
-        readme: doc_text,
+        doc_content: doc_text,
         row: row,
         column: column,
         aliases: aliases

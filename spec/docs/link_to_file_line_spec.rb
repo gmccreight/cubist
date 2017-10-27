@@ -26,9 +26,9 @@ module Cubist
 
     context "cursor on the link" do
 
-      def link_for_readme(readme)
+      def link_for_doc_content(readme)
         @klass.dest_for(
-          readme: readme,
+          doc_content: readme,
           row: 0,
           column:9,
           aliases: @aliases
@@ -37,7 +37,7 @@ module Cubist
 
       it "should be able to identify the whole file you should go to if no regex" do
         readme = "Before [[file1]] after"
-        result_hash = link_for_readme(readme)
+        result_hash = link_for_doc_content(readme)
         expect(result_hash[:status]).to eq(:success)
         expect(result_hash[:file]).to eq("folder1/file1")
       end
@@ -46,7 +46,7 @@ module Cubist
 
         it "should be able to identify the file and line if regex" do
           readme = "Before [[file1:/line2/]] after"
-          result_hash = link_for_readme(readme)
+          result_hash = link_for_doc_content(readme)
           expect(result_hash[:status]).to eq(:success)
           expect(result_hash[:file]).to eq("folder1/file1")
           expect(result_hash[:line_num]).to eq(2)
@@ -54,7 +54,7 @@ module Cubist
 
         it "should return the first line matching regex" do
           readme = "Before [[file1:/line/]] after"
-          result_hash = link_for_readme(readme)
+          result_hash = link_for_doc_content(readme)
           expect(result_hash[:status]).to eq(:success)
           expect(result_hash[:file]).to eq("folder1/file1")
           expect(result_hash[:line_num]).to eq(0)
@@ -71,14 +71,14 @@ module Cubist
           "line0\nline1\nline2\n"
         )
         readme = "Before [[file1]] after"
-        result_hash = link_for_readme(readme)
+        result_hash = link_for_doc_content(readme)
         expect(result_hash[:status]).to eq(:failure)
         expect(result_hash[:message]).to eq(:more_than_one_matching)
       end
 
       it "should not me able to find a file that does not exist" do
         readme = "Before [[file8]] after"
-        result_hash = link_for_readme(readme)
+        result_hash = link_for_doc_content(readme)
         expect(result_hash[:status]).to eq(:failure)
         expect(result_hash[:message]).to eq(:no_matching_file)
       end
@@ -86,7 +86,7 @@ module Cubist
       it "should work in a multi-line readme" do
         readme = "Line before\n[[file1]] after"
         result_hash = @klass.dest_for(
-          readme: readme,
+          doc_content: readme,
           row: 1,
           column:2,
           aliases: @aliases
@@ -101,7 +101,7 @@ module Cubist
 
       it "should not return a file" do
         readme = "Before [[file1]] after"
-        result_hash = @klass.dest_for(readme: readme, row: 0, column:0, aliases: @aliases)
+        result_hash = @klass.dest_for(doc_content: readme, row: 0, column:0, aliases: @aliases)
         expect(result_hash[:status]).to eq(:failure)
         expect(result_hash[:message]).to eq(:no_link)
       end

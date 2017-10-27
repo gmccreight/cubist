@@ -9,7 +9,7 @@ module Cubist
         result = {summary: {status: nil}, details: []}
         matches.each do |x|
           link_content = x[1]
-          file, regex = LinkToFileLine.link_content_splitter(link_content)
+          file, regex = Link.content_splitter(link_content)
           result_hash = LinkToFileLine.alias_for(file: file, regex: regex, aliases: aliases)
           result[:details] << result_hash
         end
