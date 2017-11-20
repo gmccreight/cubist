@@ -2,14 +2,14 @@
 
 Cubist gives you multiple angles on your code.
 
-Building a complex feature in a framework that dictates a strict layout, such
-as Rails or Android, can create many files scattered throughout your codebase.
-Cubist helps you organize logical alternative 'angles' on your codebase by
-using directories and symlinks.  An example of this would be grouping all the
-files associated with a particular feature into a directory with logical
-subdirectories, so it is easy to see all of the files associated with that
-feature in one place.  Another example might be to create groupings of files
-associated with various bug fixes.
+Building a complex feature or subsystem in a framework that dictates a strict
+layout, such as Rails or Android, can create many files scattered throughout
+your codebase.  Cubist helps you organize logical alternative 'angles' on your
+codebase by using directories and symlinks.  An example of this would be
+grouping all the files associated with a particular feature into a directory
+with logical subdirectories, so it is easy to see all of the files associated
+with that feature in one place.  Another example might be to create groupings
+of files associated with various bug fixes.
 
 Cubist does not change the structure of your code, but rather provides a single
 directory that you add to the root of your project that contains all of the
@@ -19,7 +19,7 @@ cubist directory.
 Cubist is completely language and framework agnostic; however it requires the
 project to be version controlled by git.
 
-Cubist helps you create and maintain the angles over time.  For eaxmple, using
+Cubist helps you create and maintain the angles over time.  For example, using
 your git history, it can suggest additional files to add to an angle, and
 tracks files through deletions, renames, etc, allowing you to move around in
 your project's revision history without breaking your angles.
@@ -87,15 +87,15 @@ style prefix on the symlink itself.  For example, if you are in a Rails project
 and some of the models you care about are vendored, and others are from a Rails
 engine, and yet others are from the app code itself, if you decide to display
 them side-by-side in a directory, having a prefix on the files as an indicator
-of their original placement in the repo can be very helpful.
+of their original placement in the repository can be very helpful.
 
-### Smart Readme linking
+### Smart Document linking
 
-Within the Readme sections of the angles, it can be helpful to point to
+Within the documentation in the angles, it can be helpful to point to
 sections within the code, not just to files.  This is particularly true if you
 happen to be working with legacy code that does not have good separation of
-concerns within the files.  Additionally, it can tranclude the code into the
-documentation, allowing you to use a literate style to document your code.
+concerns within the files.  (TODO) Additionally, it can tranclude the code into
+the documentation, allowing you to use a literate style to document your code.
 
 ### Consistency checks and fixes
 
