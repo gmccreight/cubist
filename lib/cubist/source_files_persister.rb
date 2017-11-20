@@ -1,7 +1,5 @@
 module Cubist
-
   class SourceFilesPersister
-
     def initialize(app:)
       @app = app
     end
@@ -15,7 +13,5 @@ module Cubist
     def create_data_structure(paths)
       paths.join("\n")
     end
-
   end
-
 end

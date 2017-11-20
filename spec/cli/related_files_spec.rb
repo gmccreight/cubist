@@ -1,4 +1,4 @@
-require_relative "./cli_helper"
+require_relative './cli_helper'
 
 describe 'get related files' do
   it 'gets a single related file' do
@@ -8,7 +8,7 @@ describe 'get related files' do
     `cd #{temp_dir}; echo 3 > 3.txt; echo 1_2 >> 1.txt; git add .; git commit -m 'commit 3'`
 
     related_files = run('--get_related_files=3.txt', "CUBIST_ADAPTER_GIT_BINARY=git CUBIST_ADAPTER_GIT_DIRECTORY=#{temp_dir}").chomp
-    expect(related_files).to eq("1.txt")
+    expect(related_files).to eq('1.txt')
   end
   it 'gets multiple related files' do
     `cd #{temp_dir}; git init`

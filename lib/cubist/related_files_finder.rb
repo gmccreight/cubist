@@ -1,7 +1,5 @@
 module Cubist
-
   class RelatedFilesFinder
-
     # returns
     #
     # {
@@ -13,7 +11,7 @@ module Cubist
     # }
 
     def find(files:, commits:)
-      result = {all: nil, per_file: {}}
+      result = { all: nil, per_file: {} }
       global_score_for = {}
       global_score_for.default = 0
       files.each do |file|
@@ -27,8 +25,8 @@ module Cubist
         result[:per_file][file] = files_and_scores
       end
       all_result = []
-      global_score_for.sort_by{ |k, v| v }.reverse.each do |k, v|
-        all_result << {file: k, score: v}
+      global_score_for.sort_by { |_k, v| v }.reverse_each do |k, v|
+        all_result << { file: k, score: v }
       end
       result[:all] = all_result
       result
@@ -38,20 +36,16 @@ module Cubist
       count_for = {}
       count_for.default = 0
       commits.each do |commit|
-        if ! commit.contains_file?(file)
-          next
-        end
-        commit.files.reject{|x| x == file}.each do |f|
+        next unless commit.contains_file?(file)
+        commit.files.reject { |x| x == file }.each do |f|
           count_for[f] += 1
         end
       end
       result = []
-      count_for.sort_by{ |k, v| v }.reverse.each do |k, v|
-        result << {file: k, score: v}
+      count_for.sort_by { |_k, v| v }.reverse_each do |k, v|
+        result << { file: k, score: v }
       end
       result
     end
-
   end
-
 end

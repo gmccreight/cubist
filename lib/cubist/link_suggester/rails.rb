@@ -4,6 +4,7 @@ module Cubist
       def is_type?
         true
       end
+
       def suggestion_for(path)
         path
       end

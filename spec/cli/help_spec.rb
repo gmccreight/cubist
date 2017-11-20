@@ -1,4 +1,4 @@
-require_relative "./cli_helper"
+require_relative './cli_helper'
 
 describe 'show help' do
   it 'when it gets the right flags' do

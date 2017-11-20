@@ -1,11 +1,7 @@
 module Cubist
-
   module Docs
-
     class LinkToFileLine
-
       def self.dest_for(doc_content:, row:, column:, aliases:)
-
         line = doc_content.lines[row]
 
         file, regex = LinkTranslator.link_regex_for(
@@ -21,7 +17,7 @@ module Cubist
       end
 
       def self.alias_for(file:, regex:, aliases:)
-        if aliases.select{|x| x.basename == file}.size > 1
+        if aliases.count { |x| x.basename == file } > 1
           return wrap_result(:failure, :more_than_one_matching, nil, nil)
         end
         aliases.each do |f|
@@ -35,18 +31,15 @@ module Cubist
                 end
               end
             end
-            return wrap_result(:success, :file_found, f.dir + "/" + f.basename, matched_line)
+            return wrap_result(:success, :file_found, f.dir + '/' + f.basename, matched_line)
           end
         end
-        return wrap_result(:failure, :no_matching_file, nil, nil)
+        wrap_result(:failure, :no_matching_file, nil, nil)
       end
 
       def self.wrap_result(status, message, file, line_num)
-        {status: status, message: message, file: file, line_num: line_num}
+        { status: status, message: message, file: file, line_num: line_num }
       end
-
     end
-
   end
-
 end

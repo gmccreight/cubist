@@ -9,14 +9,14 @@ options = {}
 OptionParser.new do |opt|
   opt.on('--dir DIR') { |o| options[:dir] = o }
   opt.on('--make_angle ANGLE') { |o| options[:make_angle] = o }
-  opt.on('--get_angles') { |o| options[:get_angles] = true }
+  opt.on('--get_angles') { |_o| options[:get_angles] = true }
   opt.on('--get_related_files FILES') { |o| options[:get_related_files] = o }
   opt.on('--doc DOCFILE') { |o| options[:doc] = o }
 
-  opt.on("--doc_row=0", Integer, "Which row of the documentation?") do |doc_row|
+  opt.on('--doc_row=0', Integer, 'Which row of the documentation?') do |doc_row|
     options[:doc_row] = doc_row
   end
-  opt.on("--doc_column=0", Integer, "Which column of the documentation?") do |doc_column|
+  opt.on('--doc_column=0', Integer, 'Which column of the documentation?') do |doc_column|
     options[:doc_column] = doc_column
   end
 end.parse!
@@ -24,12 +24,12 @@ end.parse!
 if options.key?(:dir)
   app.set_project_root(options[:dir])
 else
-  STDERR.puts "please set the dir with --dir"
+  STDERR.puts 'please set the dir with --dir'
   exit 1
 end
 
 if options.key?(:get_angles)
-  puts app.get_angles()
+  puts app.get_angles
   exit 0
 end
 
@@ -45,12 +45,12 @@ if options.key?(:get_related_files)
 end
 
 if options.key?(:doc)
-  if !options.key?(:doc_row)
-    STDERR.puts "please pass --doc_row, too"
+  unless options.key?(:doc_row)
+    STDERR.puts 'please pass --doc_row, too'
     exit 1
   end
-  if !options.key?(:doc_column)
-    STDERR.puts "please pass --doc_column, too"
+  unless options.key?(:doc_column)
+    STDERR.puts 'please pass --doc_column, too'
     exit 1
   end
   puts app.get_destination_for(doc: options[:doc], row: options[:doc_row], column: options[:doc_column])

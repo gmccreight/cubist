@@ -1,4 +1,4 @@
-require_relative "./spec_helper"
+require_relative './spec_helper'
 
 describe Cubist do
   it 'has a version number' do

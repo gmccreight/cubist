@@ -1,5 +1,4 @@
 module Cubist
-
   class Commit
     require 'set'
 
@@ -13,7 +12,5 @@ module Cubist
     def contains_file?(file)
       @files.include?(file)
     end
-
   end
-
 end

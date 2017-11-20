@@ -1,7 +1,5 @@
 module Cubist
-
   class App
-
     def initialize
       @conf = nil
     end
@@ -10,7 +8,7 @@ module Cubist
       if @conf
         @conf.root = root
       else
-        @conf = Cubist::Conf.new(root, "_cubist")
+        @conf = Cubist::Conf.new(root, '_cubist')
       end
     end
 
@@ -27,29 +25,29 @@ module Cubist
     end
 
     def make_angle(relative_path)
-      file_full_path = @conf.cubist_folder_full_path + "/" + relative_path + "/.cubist_angle"
+      file_full_path = @conf.cubist_folder_full_path + '/' + relative_path + '/.cubist_angle'
       FileUtils.mkdir_p(Pathname.new(file_full_path).dirname.to_s)
       FileUtils.touch(file_full_path)
     end
 
     def get_related_files(relative_paths)
-      finder = Cubist::RelatedFilesFinder.new()
+      finder = Cubist::RelatedFilesFinder.new
       commits = Cubist::Adapter::Git.new.commits_containing_files(files: relative_paths)
       result = finder.find(files: relative_paths, commits: commits)
-      files = result[:all].map{|x| x[:file]}
+      files = result[:all].map { |x| x[:file] }
       alive = []
       unlinked = []
       files.each do |file|
-        if File.exists?(ENV["CUBIST_ADAPTER_GIT_DIRECTORY"] + "/" + file)
+        if File.exist?(ENV['CUBIST_ADAPTER_GIT_DIRECTORY'] + '/' + file)
           alive << file
         else
           unlinked << file
         end
       end
       if unlinked.size > 0
-        puts alive.map{|x| "alive #{x}"} + unlinked.map{|x| "unlinked #{x}"}
+        puts alive.map { |x| "alive #{x}" } + unlinked.map { |x| "unlinked #{x}" }
       else
-        puts alive.map{|x| x}
+        puts alive.map { |x| x }
       end
     end
 
@@ -62,7 +60,7 @@ module Cubist
     end
 
     def conf_file_path
-      @conf.root_full_path + "/.cubist_data"
+      @conf.root_full_path + '/.cubist_data'
     end
 
     def get_destination_for(doc:, row:, column:)
@@ -77,7 +75,5 @@ module Cubist
       )
       JSON.pretty_generate(result_hash)
     end
-
   end
-
 end
